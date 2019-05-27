@@ -1,0 +1,30 @@
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: strapi-deploy
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: strapi
+    spec:
+      containers:
+      - name: strapi
+        image: strapi/strapi
+        ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: strapi-svc
+  labels:
+    app: strapi
+spec:
+  ports:
+  - port: 80
+    name: strapi
+  selector:
+    app: strapi

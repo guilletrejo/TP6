@@ -1,0 +1,57 @@
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: strapi-deploy
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: strapi
+    spec:
+      containers:
+      - name: strapi
+        image: guilletrejo/strapi_address:latest
+        env:
+          - name: APP_NAME
+            value: strapi-app
+          - name: DATABASE_CLIENT
+            value: mongo
+          - name: DATABASE_HOST
+            value: mongo-svc
+          - name: DATABASE_PORT
+            value: "27017"
+          - name: DATABASE_NAME
+            value: strapi
+        ports:
+          - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: strapi-svc
+  labels:
+    app: strapi
+spec:
+  ports:
+  - port: 80
+    name: strapi
+  selector:
+    app: strapi
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: example-ingress
+  annotations:
+    ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - host: gui.ejemplo.com
+    http:
+      paths:
+        - path: /strapi
+          backend:
+            serviceName: strapi-svc
+            servicePort: 80

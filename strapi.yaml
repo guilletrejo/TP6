@@ -25,7 +25,7 @@ spec:
           - name: DATABASE_NAME
             value: strapi
         ports:
-          - containerPort: 80
+          - containerPort: 1337
 ---
 apiVersion: v1
 kind: Service
@@ -35,7 +35,7 @@ metadata:
     app: strapi
 spec:
   ports:
-  - port: 80
+  - port: 1337
     name: strapi
   selector:
     app: strapi
@@ -51,7 +51,7 @@ spec:
   - host: gui.ejemplo.com
     http:
       paths:
-        - path: /strapi
+        - path: /
           backend:
             serviceName: strapi-svc
-            servicePort: 80
+            servicePort: 1337

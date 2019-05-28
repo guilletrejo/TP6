@@ -40,12 +40,12 @@ spec:
   selector:
     app: strapi
 ---
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io//v1beta1
 kind: Ingress
 metadata:
   name: example-ingress
   annotations:
-    ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
   - host: gui.ejemplo.com

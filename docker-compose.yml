@@ -1,0 +1,46 @@
+version: '2.1'
+
+services:
+  b1:
+    build: ./images/bgp/.
+    volumes:
+      - ./volumes/bgp/zebra.conf:/etc/quagga/zebra.conf:ro
+      - ./volumes/bgp/bgpd.conf:/etc/quagga/bgpd.conf:ro
+      - ./volumes/bgp/ospfd.conf:/etc/quagga/ospfd.conf:ro
+      - ./volumes/bgp/supervisord.conf:/etc/supervisord.conf:ro
+    image: bgp:20180508
+    privileged: true
+    ports:
+      #admin
+      - 10101:2601
+      #ospf
+      - 10002:2604
+      #bgp
+      - 10103:2605
+    networks:
+      dns_net:
+        ipv4_address: 200.17.18.2
+      k8_net:
+        ipv4_address: 200.17.18.130
+      loop_net:
+        ipv4_address: 200.17.19.2
+
+networks:
+  dns_net:
+    driver: "bridge"
+    ipam:
+      driver: default
+      config:
+        - subnet: 200.17.18.0/25
+  k8_net:
+    driver: "bridge"
+    ipam:
+      driver: default
+      config:
+        - subnet: 200.17.18.128/25
+  loop_net:
+    driver: "bridge"
+    ipam:
+      driver: default
+      config:
+        - subnet: 200.17.19.0/26

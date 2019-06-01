@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.imageM.repository }}-svc
+  labels:
+    app: {{ .Values.imageM.repository }}
+spec:
+  ports:
+    - port: {{ .Values.imageM.port }}
+      name: {{ .Values.imageM.repository }}
+  clusterIP:
+  selector:
+    app.kubernetes.io/name: {{ .Values.imageM.repository }}

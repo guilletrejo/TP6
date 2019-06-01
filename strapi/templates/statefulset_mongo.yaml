@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: {{ .Values.imageM.repository }}
+spec:
+  selector:
+    matchLabels:
+       app: {{ .Values.imageM.repository }}
+  serviceName: {{ .Values.imageM.repository }}-svc
+  replicas: {{ .Values.replicaCount }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.imageM.repository }}
+    spec:
+      terminationGracePeriodSeconds: 10
+      containers:
+      - name: {{ .Values.imageM.repository }}
+        image: {{ .Values.imageM.repository }}
+        ports:
+        - containerPort: {{ .Values.imageM.port }}
+          name: {{ .Values.imageM.repository }}
+        volumeMounts:
+        - name: www
+          mountPath: "/data/db"
+  volumeClaimTemplates:
+  - metadata:
+      name: www
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      resources:
+        requests:
+          storage: 500Mi 

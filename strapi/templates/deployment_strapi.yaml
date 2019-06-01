@@ -1,0 +1,31 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: {{ include "strapi.name" . }}-deploy
+
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ include "strapi.name" . }}
+  template:
+    metadata:
+      labels:
+        app: {{ include "strapi.name" . }}
+    spec:
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.imageS.repository }}:{{ .Values.imageS.tag }}" 
+          env: 
+            - name: APP_NAME
+              value: {{ .Chart.Name }}-app
+            - name: DATABASE_CLIENT
+              value: {{ .Values.imageM.repository }}
+            - name: DATABASE_HOST
+              value: "{{ .Values.imageM.repository }}-svc"
+            - name: DATABASE_PORT
+              value: "{{ .Values.imageM.port }}"
+            - name: DATABASE_NAME
+              value: {{ .Chart.Name }}
+          ports:
+            - containerPort: {{ .Values.imageS.port }}

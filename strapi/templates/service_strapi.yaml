@@ -6,7 +6,7 @@ metadata:
     app: {{ .Chart.Name }}
 spec:
   ports:
-    - port: {{ .Values.service.port }}
-      name: {{ .Chart.Name }}
+  - port: {{ .Values.service.port }}
+    name: {{ .Chart.Name }}
   selector:
-    app.kubernetes.io/name: {{ include "strapi.name" . }}
+    app: {{ include "strapi.name" . }}

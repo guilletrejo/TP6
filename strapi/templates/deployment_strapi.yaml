@@ -14,18 +14,18 @@ spec:
         app: {{ include "strapi.name" . }}
     spec:
       containers:
-        - name: {{ .Chart.Name }}
-          image: "{{ .Values.imageS.repository }}:{{ .Values.imageS.tag }}" 
-          env: 
-            - name: APP_NAME
-              value: {{ .Chart.Name }}-app
-            - name: DATABASE_CLIENT
-              value: {{ .Values.imageM.repository }}
-            - name: DATABASE_HOST
-              value: "{{ .Values.imageM.repository }}-svc"
-            - name: DATABASE_PORT
-              value: "{{ .Values.imageM.port }}"
-            - name: DATABASE_NAME
-              value: {{ .Chart.Name }}
-          ports:
-            - containerPort: {{ .Values.imageS.port }}
+      - name: {{ .Chart.Name }}
+        image: "{{ .Values.imageS.repository }}:{{ .Values.imageS.tag }}" 
+        env: 
+          - name: APP_NAME
+            value: {{ .Chart.Name }}-app
+          - name: DATABASE_CLIENT
+            value: {{ .Values.imageM.repository }}
+          - name: DATABASE_HOST
+            value: "{{ .Values.imageM.repository }}-svc"
+          - name: DATABASE_PORT
+            value: "{{ .Values.imageM.port }}"
+          - name: DATABASE_NAME
+            value: {{ .Chart.Name }}
+        ports:
+          - containerPort: {{ .Values.imageS.port }}

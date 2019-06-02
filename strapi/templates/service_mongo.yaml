@@ -6,8 +6,8 @@ metadata:
     app: {{ .Values.imageM.repository }}
 spec:
   ports:
-    - port: {{ .Values.imageM.port }}
-      name: {{ .Values.imageM.repository }}
-  clusterIP:
+  - port: {{ .Values.imageM.port }}
+    name: {{ .Values.imageM.repository }}
+  clusterIP: None
   selector:
-    app.kubernetes.io/name: {{ .Values.imageM.repository }}
+    app: {{ .Values.imageM.repository }}

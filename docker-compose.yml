@@ -12,11 +12,11 @@ services:
     privileged: true
     ports:
       #admin
-      - 10101:2601
+      - "10101:2601"
       #ospf
-      - 10002:2604
+      - "10002:2604"
       #bgp
-      - 10103:2605
+      - "10103:2605"
     networks:
       dns_net:
         ipv4_address: 200.17.18.2
@@ -24,6 +24,31 @@ services:
         ipv4_address: 200.17.18.130
       loop_net:
         ipv4_address: 200.17.19.2
+  
+  host1:
+    build: ./images/host/.
+    image: alpine:20190106
+    command: top
+    privileged: true
+    networks:
+      k8_net:
+        ipv4_address: 200.17.18.140
+
+  dns_server:
+    image: sameersbn/bind:latest
+    dns: 127.0.0.1 # quiza aca haya que poner los IP de los dns de los otros grupos (de donde vamos a aprender las direcciones)
+    volumes:
+      - ./volumes/dns/data:/data
+    environment:
+      - ROOT_PASSWORD=SecretPassword
+    privileged: true
+    ports:
+        - 10000:10000
+        - 10053:53/udp
+        - 10053:53/tcp
+    networks:
+      dns_net:
+        ipv4_address: 200.17.18.3
 
 networks:
   dns_net:

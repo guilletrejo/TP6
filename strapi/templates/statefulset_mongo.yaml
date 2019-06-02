@@ -5,7 +5,7 @@ metadata:
 spec:
   selector:
     matchLabels:
-       app: {{ .Values.imageM.repository }}
+      app: {{ .Values.imageM.repository }}
   serviceName: {{ .Values.imageM.repository }}-svc
   replicas: {{ .Values.replicaCount }}
   template:

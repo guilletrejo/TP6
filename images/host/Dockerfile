@@ -1,3 +1,3 @@
 FROM alpine:latest
 RUN apk update
-RUN apk add bind-tools nmap
+RUN apk add bind-tools nmap openssh nano

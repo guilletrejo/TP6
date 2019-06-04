@@ -17,5 +17,5 @@ service:
   port: 1337
 
 ingress:
-  host: aa.efn.unc.edu.ar
+  host: a.efn.unc.edu.ar
   port: 1337

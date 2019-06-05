@@ -1,0 +1,12 @@
+$ttl 38400
+a.efn.unc.edu.ar.	IN	SOA	ns1.a.efn.unc.edu.ar. guille\.trejo14.gmail.com. (
+			1559692088
+			60
+			3600
+			604800
+			38400 )
+a.efn.unc.edu.ar.	IN	NS	ns1.a.efn.unc.edu.ar.
+strapi.a.efn.unc.edu.ar.	IN	A	200.17.18.135
+ns1.a.efn.unc.edu.ar.	IN	A	200.17.18.3
+200.17.18.135.a.efn.unc.edu.ar.	IN	PTR	strapi.a.efn.unc.edu.ar.
+200.17.18.3.a.efn.unc.edu.ar.	IN	PTR	ns1.a.efn.unc.edu.ar

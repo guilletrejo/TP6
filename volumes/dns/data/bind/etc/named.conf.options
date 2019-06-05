@@ -23,8 +23,10 @@ options {
 		127.0.0.1;
 		200.17.18.3;
 		};
+    recursion yes;
 	allow-query { localhost; any; } ;
 	auth-nxdomain no;    # conform to RFC1035
 	listen-on-v6 { any; };
+    forwarders {8.8.8.8;};
 };
 

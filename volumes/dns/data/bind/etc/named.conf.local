@@ -6,7 +6,8 @@
 // organization
 //include "/etc/bind/zones.rfc1918";
 
-zone "efn.unc.edu.ar" {
+zone "a.efn.unc.edu.ar" {
 	type master;
-	file "/var/lib/bind/efn.unc.edu.ar.hosts";
+    allow-query {any;} ;
+	file "/var/lib/bind/a.efn.unc.edu.ar.hosts";
 	};

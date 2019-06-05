@@ -17,5 +17,5 @@ service:
   port: 1337
 
 ingress:
-  host: a.efn.unc.edu.ar
+  host: strapi.a.efn.unc.edu.ar
   port: 1337

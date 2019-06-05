@@ -1,0 +1,9 @@
+ping
+cat /bin
+ls /bin
+ypdomainname
+dns
+ls
+ifconfig
+ip route
+route

@@ -29,6 +29,8 @@ services:
   
   host1:
     build: ./images/host/.
+    volumes:
+      - ./volumes/dns/resolv.conf:/etc/resolv.conf
     image: alpine:20190106
     command: top
     privileged: true
@@ -38,7 +40,7 @@ services:
 
   dns_server:
     image: sameersbn/bind:latest
-    dns: 8.8.8.8
+    #dns: 8.8.8.8
     volumes:
       - ./volumes/dns/data:/data
     environment:

@@ -7,6 +7,8 @@ clean:
 	docker-compose down
 
 delete_routes:
+	docker exec -it tp6_b1_1 ip route del default;
+	docker exec -it tp6_b1_1 ip route add default via 70.0.0.1ls;
 	docker exec -it tp6_host1_1 ip route del default;
 	docker exec -it tp6_host1_1 ip route add default via 200.17.19.2;
 	docker exec -it tp6_dns_server_1 route del default;

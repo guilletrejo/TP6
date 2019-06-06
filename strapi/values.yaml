@@ -7,10 +7,12 @@ replicaCount: "1"
 imageS:
   repository: guilletrejo/strapi_address
   tag: latest
+  pullPolicy: IfNotPresent
   port: 1337
 
 imageM:
   repository: mongo
+  pullPolicy: IfNotPresent
   port: 27017
 
 service:
